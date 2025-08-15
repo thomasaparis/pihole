@@ -1,0 +1,21 @@
+services:
+  pihole:
+    image: pihole/pihole:latest
+    container_name: pihole
+    env_file:
+      - ./.env
+    environment:
+      TZ: ${TZ}
+      WEBPASSWORD: ${WEBPASSWORD}
+    networks:
+      pihole_macvlan:
+        ipv4_address: ${PIHOLE_IP}   # Pi-hole's static IP
+    volumes:
+      - /etc/pihole:/etc/pihole
+      - /etc/dnsmasq.d:/etc/dnsmasq.d
+    restart: unless-stopped
+
+networks:
+  pihole_macvlan:
+    external: true
+
