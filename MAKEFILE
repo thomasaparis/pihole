@@ -1,0 +1,22 @@
+# Makefile
+
+# Default target
+up:
+	sudo docker compose up
+
+# Optional: run in detached mode
+up-detached:
+	sudo docker compose up -d
+
+# Stop the containers
+down:
+	sudo docker compose down
+
+# Rebuild images and start containers
+rebuild:
+	sudo docker compose up --build
+
+# View logs
+logs:
+	sudo docker compose logs -f
+
